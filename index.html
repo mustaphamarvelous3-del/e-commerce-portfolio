@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DeTrend - Your trusted global multi-vendor marketplace. Shop from 50,000+ vendors with secure payment, free shipping, and 24/7 support.">
+    <meta name="keywords" content="marketplace, ecommerce, online shopping, multi-vendor, global marketplace">
+    <meta name="author" content="Your Name">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="DeTrend - Global Multi-Vendor Marketplace">
+    <meta property="og:description" content="Shop from 50,000+ trusted vendors worldwide. Quality guaranteed, prices unbeatable.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/og-image.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DeTrend - Global Multi-Vendor Marketplace">
+    <meta name="twitter:description" content="Shop from 50,000+ trusted vendors worldwide.">
+    <meta name="twitter:image" content="https://yourwebsite.com/twitter-image.jpg">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+    <title>DeTrend - Global Multi-Vendor Marketplace</title>
+    <link rel="stylesheet" href="./CSS/styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="shopping-bag"></i>
+                    </div>
+                    <span class="logo-text">DeTrend</span>
+                </div>
+                <button id="closeMobileMenu" class="close-menu-btn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            
+            <!-- Search Bar in Mobile Menu -->
+            <div class="mobile-search">
+                <input type="text" id="mobileSearchInput" class="mobile-search-input" placeholder="Search products...">
+                <button class="mobile-search-btn">
+                    <i data-lucide="search"></i>
+                </button>
+            </div>
+            
+            <nav class="mobile-nav">
+                <a href="#home" class="mobile-nav-item">Home</a>
+                
+                <!-- Categories with Dropdown -->
+                <div class="mobile-nav-dropdown">
+                    <button class="mobile-nav-item mobile-nav-dropdown-btn">
+                        Categories 
+                        <i data-lucide="chevron-down" class="dropdown-icon"></i>
+                    </button>
+                    <div class="mobile-nav-dropdown-content">
+                        <a href="#electronics" class="mobile-nav-subitem">Electronics</a>
+                        <a href="#fashion" class="mobile-nav-subitem">Fashion</a>
+                        <a href="#home" class="mobile-nav-subitem">Home & Garden</a>
+                        <a href="#beauty" class="mobile-nav-subitem">Beauty & Health</a>
+                        <a href="#sports" class="mobile-nav-subitem">Sports & Outdoors</a>
+                    </div>
+                </div>
+                
+                <a href="#vendors" class="mobile-nav-item">Become a Vendor</a>
+                <a href="#about" class="mobile-nav-item">About Us</a>
+                <a href="#testimonials" class="mobile-nav-item">Testimonials</a>
+                <a href="#contact" class="mobile-nav-item">Contact</a>
+                <div class="mobile-menu-divider"></div>
+                <button class="btn btn-primary w-full" onclick="openAuthModal('login')">Sign In</button>
+                <button class="btn btn-secondary w-full" onclick="openAuthModal('signup')">Create Account</button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Welcome Back</h2>
+                <button onclick="closeAuthModal()" class="close-modal-btn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="Enter your email" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter your password" class="form-input">
+                </div>
+                <div class="form-footer">
+                    <label class="checkbox-label">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="link-text">Forgot password?</a>
+                </div>
+                <button class="btn btn-primary w-full btn-lg">Sign In</button>
+                <p class="form-switch">Don't have an account? <a href="#" onclick="switchAuthMode('signup')">Sign up</a></p>
+            </div>
+            <div id="signupForm" class="auth-form" style="display: none;">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="John Doe" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="john@example.com" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Create a strong password" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Account Type</label>
+                    <select class="form-input">
+                        <option>Customer</option>
+                        <option>Vendor</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary w-full btn-lg">Create Account</button>
+                <p class="form-switch">Already have an account? <a href="#" onclick="switchAuthMode('login')">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2>Shopping Cart</h2>
+                <button onclick="closeCartModal()" class="close-modal-btn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div id="cartItems" class="cart-items">
+                <!-- Cart items are inserted here -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal" class="cart-total-price">$0.00</span>
+                </div>
+                <button class="btn btn-primary btn-lg w-full" onclick="checkout()">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="container">
+            <div class="announcement-content">
+                <i data-lucide="gift"></i>
+                <span>🎉 New Year Sale: Get up to 70% OFF + Free Shipping on orders over $50!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open menu">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="shopping-bag"></i>
+                    </div>
+                    <span class="logo-text">DeTrend</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="desktop-nav">
+                    <a href="#home" class="nav-link">Home</a>
+                    <div class="dropdown">
+                        <a href="#categories" class="nav-link">Categories <i data-lucide="chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#electronics">Electronics</a>
+                            <a href="#fashion">Fashion</a>
+                            <a href="#home">Home & Garden</a>
+                            <a href="#beauty">Beauty & Health</a>
+                            <a href="#sports">Sports & Outdoors</a>
+                        </div>
+                    </div>
+                    <a href="#vendors" class="nav-link">Become a Vendor</a>
+                    <a href="#about" class="nav-link">About</a>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search products...">
+                    <button class="search-btn">
+                        <i data-lucide="search"></i>
+                    </button>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="nav-actions">
+                    <button class="nav-icon-btn" title="Wishlist" aria-label="View wishlist">
+                        <i data-lucide="heart"></i>
+                        <span class="badge">2</span>
+                    </button>
+
+                    <button class="nav-icon-btn" id="cartBtn" title="Cart" aria-label="View shopping cart">
+                        <i data-lucide="shopping-cart"></i>
+                        <span class="badge" id="cartBadge">0</span>
+                    </button>
+                    <button class="btn btn-ghost" onclick="openAuthModal('login')">Sign In</button>
+                    <button class="btn btn-primary" onclick="openAuthModal('signup')">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <span class="hero-badge">Featured Collection</span>
+                    <h1 class="hero-title">Discover Extraordinary Products</h1>
+                    <p class="hero-subtitle">Shop from 50,000+ trusted vendors worldwide. Quality guaranteed, prices unbeatable.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-lg">
+                            <i data-lucide="shopping-bag"></i> Shop Now
+                        </button>
+                        <button class="btn btn-secondary-light btn-lg">
+                            <i data-lucide="play-circle"></i> Watch Video
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">2M+</div>
+                            <div class="stat-label">Products</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Vendors</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <i data-lucide="shield-check"></i>
+                    <div>
+                        <h4>Secure Payment</h4>
+                        <p>256-bit SSL encryption</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="truck"></i>
+                    <div>
+                        <h4>Free Shipping</h4>
+                        <p>On orders over $50</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="refresh-cw"></i>
+                    <div>
+                        <h4>Easy Returns</h4>
+                        <p>30-day return policy</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="headphones"></i>
+                    <div>
+                        <h4>24/7 Support</h4>
+                        <p>Always here to help</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <div class="section-header-center">
+                <h2 class="section-title">Shop by Category</h2>
+                <p class="section-subtitle">Explore our diverse range of product categories</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1498049794561-7780e7231661?w=500&q=80')"></div>
+                    <div class="category-info">
+                        <h3>Electronics</h3>
+                        <p>12,500+ items</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=500&q=80')"></div>
+                    <div class="category-info">
+                        <h3>Fashion</h3>
+                        <p>25,300+ items</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&q=80')"></div>
+                    <div class="category-info">
+                        <h3>Home & Living</h3>
+                        <p>8,700+ items</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80')"></div>
+                    <div class="category-info">
+                        <h3>Beauty & Health</h3>
+                        <p>15,200+ items</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="product-section">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Featured Products</h2>
+                    <p class="section-subtitle">Handpicked items from top vendors</p>
+                </div>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-category="all">All</button>
+                    <button class="filter-tab" data-category="electronics">Electronics</button>
+                    <button class="filter-tab" data-category="fashion">Fashion</button>
+                    <button class="filter-tab" data-category="home">Home</button>
+                </div>
+            </div>
+
+            <div id="productsGrid" class="product-grid">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Loading products...</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-outline">
+                    View All Products <i data-lucide="arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vendor CTA Section -->
+    <section id="vendors" class="vendor-cta-section">
+        <div class="container">
+            <div class="vendor-cta-grid">
+                <div class="vendor-cta-content">
+                    <span class="cta-badge">Start Selling Today</span>
+                    <h2>Join 50,000+ Successful Vendors</h2>
+                    <p>Reach millions of customers worldwide. Set up your store in minutes with our powerful tools and dedicated support.</p>
+                    <ul class="feature-list">
+                        <li><i data-lucide="check-circle"></i> Zero listing fees for first 3 months</li>
+                        <li><i data-lucide="check-circle"></i> Advanced analytics dashboard</li>
+                        <li><i data-lucide="check-circle"></i> Integrated payment processing</li>
+                        <li><i data-lucide="check-circle"></i> 24/7 vendor support</li>
+                    </ul>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary btn-lg">Get Started Free</button>
+                        <button class="btn btn-ghost btn-lg">Learn More</button>
+                    </div>
+                </div>
+                <div class="vendor-cta-image">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="Vendor Dashboard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header-center">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Join thousands of satisfied customers worldwide</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                    </div>
+                    <p class="testimonial-text">"DeTrend has completely transformed how I shop online. The variety of products and competitive prices are unmatched. I've never had a single issue with delivery or quality!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/100?img=1" alt="Sarah Johnson">
+                        <div>
+                            <h4>Sarah Johnson</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                    </div>
+                    <p class="testimonial-text">"As a vendor, DeTrend provided everything I needed to grow my business. The platform is intuitive, the fees are fair, and the support team is incredible. Revenue is up 300%!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/100?img=12" alt="Michael Chen">
+                        <div>
+                            <h4>Michael Chen</h4>
+                            <p>TechGear Pro - Vendor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                        <i data-lucide="star" class="star-filled"></i>
+                    </div>
+                    <p class="testimonial-text">"The customer service is outstanding! When I had an issue with an order, they resolved it within hours. This is why I keep coming back to DeTrend for all my shopping needs."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/100?img=5" alt="Emily Rodriguez">
+                        <div>
+                            <h4>Emily Rodriguez</h4>
+                            <p>Premium Member</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i data-lucide="users"></i>
+                    <div class="stat-number" data-target="5000000">0</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="package"></i>
+                    <div class="stat-number" data-target="2000000">0</div>
+                    <div class="stat-label">Products Listed</div>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="store"></i>
+                    <div class="stat-number" data-target="50000">0</div>
+                    <div class="stat-label">Active Vendors</div>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="globe"></i>
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label">Countries Served</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Get exclusive deals, new arrivals, and insider updates delivered to your inbox.</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" class="newsletter-input">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo mb-3">
+                        <div class="logo-icon">
+                            <i data-lucide="shopping-bag"></i>
+                        </div>
+                        <span class="logo-text">DeTrend</span>
+                    </div>
+                    <p class="footer-desc">Your trusted global marketplace connecting buyers with quality vendors worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i data-lucide="facebook"></i></a>
+                        <a href="#"><i data-lucide="twitter"></i></a>
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#vendors">Become a Vendor</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li><i data-lucide="mail"></i> support@detrend.com</li>
+                        <li><i data-lucide="phone"></i> +234 913 143 2343</li>
+                        <li><i data-lucide="map-pin"></i> 3 Matti St, Ikorodu, 104101, Lagos, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DeTrend. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script src="./JS/script.js"></script>
+</body>
+</html>
