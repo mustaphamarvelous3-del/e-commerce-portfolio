@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DeTrend - Your trusted global multi-vendor marketplace. Shop from 50,000+ vendors with secure payment, free shipping, and 24/7 support.">
+    <meta name="description"
+        content="Marvillyon - Your trusted global multi-vendor marketplace. Shop from 50,000+ vendors with secure payment, free shipping, and 24/7 support.">
     <meta name="keywords" content="marketplace, ecommerce, online shopping, multi-vendor, global marketplace">
     <meta name="author" content="Your Name">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="DeTrend - Global Multi-Vendor Marketplace">
-    <meta property="og:description" content="Shop from 50,000+ trusted vendors worldwide. Quality guaranteed, prices unbeatable.">
+    <meta property="og:title" content="Marvillyon - Global Multi-Vendor Marketplace">
+    <meta property="og:description"
+        content="Shop from 50,000+ trusted vendors worldwide. Quality guaranteed, prices unbeatable.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourwebsite.com">
-    <meta property="og:image" content="https://yourwebsite.com/og-image.jpg">
+    <meta property="og:url" content="https://marvillyon.com">
+    <meta property="og:image" content="https://marvillyon.com/og-image.jpg">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DeTrend - Global Multi-Vendor Marketplace">
+    <meta name="twitter:title" content="Marvillyon - Global Multi-Vendor Marketplace">
     <meta name="twitter:description" content="Shop from 50,000+ trusted vendors worldwide.">
-    <meta name="twitter:image" content="https://yourwebsite.com/twitter-image.jpg">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
-    <title>DeTrend - Global Multi-Vendor Marketplace</title>
+    <meta name="twitter:image" content="https://marvillyon.com/twitter-image.jpg">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+    <title>Marvillyon - Global Multi-Vendor Marketplace</title>
     <link rel="stylesheet" href="./CSS/styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
     </script>
 </head>
+
 <body>
     <!-- Mobile Menu Overlay -->
     <div id="mobileMenuOverlay" class="mobile-menu-overlay">
@@ -40,13 +45,13 @@
                     <div class="logo-icon">
                         <i data-lucide="shopping-bag"></i>
                     </div>
-                    <span class="logo-text">DeTrend</span>
+                    <span class="logo-text">Marvillyon</span>
                 </div>
                 <button id="closeMobileMenu" class="close-menu-btn">
                     <i data-lucide="x"></i>
                 </button>
             </div>
-            
+
             <!-- Search Bar in Mobile Menu -->
             <div class="mobile-search">
                 <input type="text" id="mobileSearchInput" class="mobile-search-input" placeholder="Search products...">
@@ -54,14 +59,14 @@
                     <i data-lucide="search"></i>
                 </button>
             </div>
-            
+
             <nav class="mobile-nav">
                 <a href="#home" class="mobile-nav-item">Home</a>
-                
+
                 <!-- Categories with Dropdown -->
                 <div class="mobile-nav-dropdown">
                     <button class="mobile-nav-item mobile-nav-dropdown-btn">
-                        Categories 
+                        Categories
                         <i data-lucide="chevron-down" class="dropdown-icon"></i>
                     </button>
                     <div class="mobile-nav-dropdown-content">
@@ -72,7 +77,7 @@
                         <a href="#sports" class="mobile-nav-subitem">Sports & Outdoors</a>
                     </div>
                 </div>
-                
+
                 <a href="#vendors" class="mobile-nav-item">Become a Vendor</a>
                 <a href="#about" class="mobile-nav-item">About Us</a>
                 <a href="#testimonials" class="mobile-nav-item">Testimonials</a>
@@ -109,7 +114,8 @@
                     <a href="#" class="link-text">Forgot password?</a>
                 </div>
                 <button class="btn btn-primary w-full btn-lg">Sign In</button>
-                <p class="form-switch">Don't have an account? <a href="#" onclick="switchAuthMode('signup')">Sign up</a></p>
+                <p class="form-switch">Don't have an account? <a href="#" onclick="switchAuthMode('signup')">Sign up</a>
+                </p>
             </div>
             <div id="signupForm" class="auth-form" style="display: none;">
                 <div class="form-group">
@@ -132,7 +138,59 @@
                     </select>
                 </div>
                 <button class="btn btn-primary w-full btn-lg">Create Account</button>
-                <p class="form-switch">Already have an account? <a href="#" onclick="switchAuthMode('login')">Sign in</a></p>
+                <p class="form-switch">Already have an account? <a href="#" onclick="switchAuthMode('login')">Sign
+                        in</a></p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2 id="modalTitle">Secure Checkout</h2>
+                <button onclick="closeCheckoutModal()" class="close-modal-btn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="auth-form">
+                <h3 class="input-label" style="margin-bottom: 10px;">Shipping Details</h3>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="checkoutName" placeholder="John Doe" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" id="checkoutAddress" placeholder="123 Street Name, City" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="checkoutPhone" placeholder="+234..." class="form-input">
+                </div>
+
+                <h3 class="input-label" style="margin-top: 20px; margin-bottom: 10px;">Payment Information</h3>
+                <div class="form-group">
+                    <label>Card Number</label>
+                    <input type="text" placeholder="**** **** **** ****" class="form-input">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Expiry</label>
+                        <input type="text" placeholder="MM/YY" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="text" placeholder="123" class="form-input">
+                    </div>
+                </div>
+
+                <div class="cart-total" style="margin-top: 1.5rem; border-top: 1px solid #eee; padding-top: 1rem;">
+                    <span>Total to Pay:</span>
+                    <span id="checkoutTotal" class="cart-total-price">$0.00</span>
+                </div>
+
+                <button class="btn btn-primary w-full btn-lg" onclick="processCheckout()">Pay Now</button>
             </div>
         </div>
     </div>
@@ -185,7 +243,7 @@
                     <div class="logo-icon">
                         <i data-lucide="shopping-bag"></i>
                     </div>
-                    <span class="logo-text">DeTrend</span>
+                    <span class="logo-text">Marvillyon</span>
                 </div>
 
                 <!-- Desktop Navigation -->
@@ -239,7 +297,8 @@
                 <div class="hero-content">
                     <span class="hero-badge">Featured Collection</span>
                     <h1 class="hero-title">Discover Extraordinary Products</h1>
-                    <p class="hero-subtitle">Shop from 50,000+ trusted vendors worldwide. Quality guaranteed, prices unbeatable.</p>
+                    <p class="hero-subtitle">Shop from 50,000+ trusted vendors worldwide. Quality guaranteed, prices
+                        unbeatable.</p>
                     <div class="hero-buttons">
                         <button class="btn btn-primary btn-lg">
                             <i data-lucide="shopping-bag"></i> Shop Now
@@ -312,28 +371,36 @@
             </div>
             <div class="categories-grid">
                 <div class="category-card">
-                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1498049794561-7780e7231661?w=500&q=80')"></div>
+                    <div class="category-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1498049794561-7780e7231661?w=500&q=80')">
+                    </div>
                     <div class="category-info">
                         <h3>Electronics</h3>
                         <p>12,500+ items</p>
                     </div>
                 </div>
                 <div class="category-card">
-                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=500&q=80')"></div>
+                    <div class="category-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=500&q=80')">
+                    </div>
                     <div class="category-info">
                         <h3>Fashion</h3>
                         <p>25,300+ items</p>
                     </div>
                 </div>
                 <div class="category-card">
-                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&q=80')"></div>
+                    <div class="category-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&q=80')">
+                    </div>
                     <div class="category-info">
                         <h3>Home & Living</h3>
                         <p>8,700+ items</p>
                     </div>
                 </div>
                 <div class="category-card">
-                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80')"></div>
+                    <div class="category-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80')">
+                    </div>
                     <div class="category-info">
                         <h3>Beauty & Health</h3>
                         <p>15,200+ items</p>
@@ -381,7 +448,8 @@
                 <div class="vendor-cta-content">
                     <span class="cta-badge">Start Selling Today</span>
                     <h2>Join 50,000+ Successful Vendors</h2>
-                    <p>Reach millions of customers worldwide. Set up your store in minutes with our powerful tools and dedicated support.</p>
+                    <p>Reach millions of customers worldwide. Set up your store in minutes with our powerful tools and
+                        dedicated support.</p>
                     <ul class="feature-list">
                         <li><i data-lucide="check-circle"></i> Zero listing fees for first 3 months</li>
                         <li><i data-lucide="check-circle"></i> Advanced analytics dashboard</li>
@@ -394,7 +462,8 @@
                     </div>
                 </div>
                 <div class="vendor-cta-image">
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="Vendor Dashboard">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
+                        alt="Vendor Dashboard">
                 </div>
             </div>
         </div>
@@ -416,7 +485,9 @@
                         <i data-lucide="star" class="star-filled"></i>
                         <i data-lucide="star" class="star-filled"></i>
                     </div>
-                    <p class="testimonial-text">"DeTrend has completely transformed how I shop online. The variety of products and competitive prices are unmatched. I've never had a single issue with delivery or quality!"</p>
+                    <p class="testimonial-text">"Marvillyon has completely transformed how I shop online. The variety of
+                        products and competitive prices are unmatched. I've never had a single issue with delivery or
+                        quality!"</p>
                     <div class="testimonial-author">
                         <img src="https://i.pravatar.cc/100?img=1" alt="Sarah Johnson">
                         <div>
@@ -433,7 +504,9 @@
                         <i data-lucide="star" class="star-filled"></i>
                         <i data-lucide="star" class="star-filled"></i>
                     </div>
-                    <p class="testimonial-text">"As a vendor, DeTrend provided everything I needed to grow my business. The platform is intuitive, the fees are fair, and the support team is incredible. Revenue is up 300%!"</p>
+                    <p class="testimonial-text">"As a vendor, Marvillyon provided everything I needed to grow my
+                        business. The platform is intuitive, the fees are fair, and the support team is incredible.
+                        Revenue is up 300%!"</p>
                     <div class="testimonial-author">
                         <img src="https://i.pravatar.cc/100?img=12" alt="Michael Chen">
                         <div>
@@ -450,7 +523,9 @@
                         <i data-lucide="star" class="star-filled"></i>
                         <i data-lucide="star" class="star-filled"></i>
                     </div>
-                    <p class="testimonial-text">"The customer service is outstanding! When I had an issue with an order, they resolved it within hours. This is why I keep coming back to DeTrend for all my shopping needs."</p>
+                    <p class="testimonial-text">"The customer service is outstanding! When I had an issue with an order,
+                        they resolved it within hours. This is why I keep coming back to Marvillyon for all my shopping
+                        needs."</p>
                     <div class="testimonial-author">
                         <img src="https://i.pravatar.cc/100?img=5" alt="Emily Rodriguez">
                         <div>
@@ -491,6 +566,91 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="about-section" style="padding: 5rem 0; background-color: var(--gray-50);">
+        <div class="container">
+            <div class="section-header-center">
+                <h2 class="section-title">About Marvillyon</h2>
+                <p class="section-subtitle">Redefining the Online Shopping Experience</p>
+                <div
+                    style="max-width: 800px; margin: 2rem auto 0; text-align: center; color: var(--gray-600); line-height: 1.8;">
+                    <p>Welcome to <strong>Marvillyon</strong>, your premium destination for quality products from around
+                        the globe. Founded with a vision to connect exceptional vendors with discerning customers, we
+                        have grown into a vibrant marketplace that celebrates diversity, quality, and innovation.</p>
+                    <br>
+                    <p>At Marvillyon, we believe shopping should be an experience, not just a transaction. That's why we
+                        curate our vendors carefully, ensuring that every product you find on our platform meets our
+                        high standards of quality and authenticity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section" style="padding: 5rem 0;">
+        <div class="container">
+            <div class="section-header-center">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">We'd love to hear from you</p>
+            </div>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-top: 3rem;">
+                <div class="contact-info">
+                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                        <div
+                            style="width: 50px; height: 50px; background: var(--gray-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                            <i data-lucide="mail"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Email Us</h4>
+                            <p style="color: var(--gray-600);">marvillyon@gmail.com</p>
+                            <p style="color: var(--gray-600);">support@marvillyon.com</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                        <div
+                            style="width: 50px; height: 50px; background: var(--gray-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                            <i data-lucide="phone"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Call Us</h4>
+                            <p style="color: var(--gray-600);">+234 913 143 2343</p>
+                            <p style="color: var(--gray-600);">Mon - Fri, 9am - 6pm</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <div
+                            style="width: 50px; height: 50px; background: var(--gray-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                            <i data-lucide="map-pin"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Visit Us</h4>
+                            <p style="color: var(--gray-600);">3 Matti St, Ikorodu</p>
+                            <p style="color: var(--gray-600);">104101, Lagos, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form"
+                    style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid var(--gray-200);">
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Your Name</label>
+                        <input type="text" placeholder="John Doe" class="form-input" style="width: 100%;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email Address</label>
+                        <input type="email" placeholder="john@example.com" class="form-input" style="width: 100%;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Message</label>
+                        <textarea placeholder="How can we help?" class="form-input"
+                            style="width: 100%; height: 120px; resize: none;"></textarea>
+                    </div>
+                    <button class="btn btn-primary w-full">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Newsletter Section -->
     <section class="newsletter-section">
         <div class="container">
@@ -516,9 +676,10 @@
                         <div class="logo-icon">
                             <i data-lucide="shopping-bag"></i>
                         </div>
-                        <span class="logo-text">DeTrend</span>
+                        <span class="logo-text">Marvillyon</span>
                     </div>
-                    <p class="footer-desc">Your trusted global marketplace connecting buyers with quality vendors worldwide.</p>
+                    <p class="footer-desc">Your trusted global marketplace connecting buyers with quality vendors
+                        worldwide.</p>
                     <div class="social-links">
                         <a href="#"><i data-lucide="facebook"></i></a>
                         <a href="#"><i data-lucide="twitter"></i></a>
@@ -547,14 +708,14 @@
                 <div class="footer-col">
                     <h4>Contact Info</h4>
                     <ul class="footer-contact">
-                        <li><i data-lucide="mail"></i> support@detrend.com</li>
+                        <li><i data-lucide="mail"></i> marvillyon@gmail.com</li>
                         <li><i data-lucide="phone"></i> +234 913 143 2343</li>
                         <li><i data-lucide="map-pin"></i> 3 Matti St, Ikorodu, 104101, Lagos, Nigeria</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 DeTrend. All rights reserved.</p>
+                <p>&copy; 2025 Marvillyon. All rights reserved.</p>
                 <div class="footer-bottom-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
@@ -570,4 +731,5 @@
 
     <script src="./JS/script.js"></script>
 </body>
+
 </html>

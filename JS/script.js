@@ -1,7 +1,9 @@
 // ============================================
 // GLOBAL STATE
 // ============================================
-let cart = JSON.parse(localStorage.getItem('detrendCart')) || [];
+let cart = JSON.parse(localStorage.getItem('marvillyonCart')) || [];
+let wishlist = JSON.parse(localStorage.getItem('marvillyonWishlist')) || [];
+let currentUser = JSON.parse(localStorage.getItem('marvillyonUser')) || null;
 let products = [];
 let currentCategory = 'all';
 
@@ -13,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     fetchProducts();
     animateStats();
+    updateAuthUI();
+    updateWishlistBadge();
 });
 
 // Initialize Lucide Icons
@@ -51,8 +55,8 @@ function setupEventListeners() {
         });
     }
     
-    // Close mobile menu when clicking nav items
-    document.querySelectorAll('.mobile-nav-item').forEach(item => {
+    // Close mobile menu when clicking nav items (but NOT dropdown button)
+    document.querySelectorAll('.mobile-nav-item:not(.mobile-nav-dropdown-btn)').forEach(item => {
         item.addEventListener('click', () => {
             mobileMenuOverlay.classList.remove('active');
         });
@@ -139,7 +143,12 @@ function setupEventListeners() {
             }
             
             // Simulate login
-            showNotification('Login successful! Welcome back! 🎉', 'success');
+            const user = { name: 'Demo User', email: email };
+            localStorage.setItem('marvillyonUser', JSON.stringify(user));
+            currentUser = user;
+            updateAuthUI();
+            
+            showNotification(`Welcome back, ${user.name}! 🎉`, 'success');
             closeAuthModal();
         });
     }
@@ -167,6 +176,11 @@ function setupEventListeners() {
             }
             
             // Simulate signup
+            const user = { name: name, email: email };
+            localStorage.setItem('marvillyonUser', JSON.stringify(user));
+            currentUser = user;
+            updateAuthUI();
+
             showNotification('Account created successfully! 🎉', 'success');
             closeAuthModal();
         });
@@ -216,6 +230,52 @@ document.getElementById('authModal')?.addEventListener('click', (e) => {
         closeAuthModal();
     }
 });
+
+function logout() {
+    localStorage.removeItem('marvillyonUser');
+    currentUser = null;
+    updateAuthUI();
+    showNotification('Logged out successfully', 'info');
+}
+
+function updateAuthUI() {
+    const navActions = document.querySelector('.nav-actions');
+    const authButtons = navActions.querySelectorAll('.btn-ghost, .btn-primary:not(.btn-sm)'); // Exclude small buttons if any
+    
+    // Remove existing auth buttons or profile menu
+    const existingProfile = document.getElementById('userProfileMenu');
+    if (existingProfile) existingProfile.remove();
+    
+    if (currentUser) {
+        // Hide default login/signup buttons
+        authButtons.forEach(btn => btn.style.display = 'none');
+        
+        // Add User Profile Menu
+        const profileHTML = `
+            <div id="userProfileMenu" class="dropdown" style="margin-left: 0.5rem;">
+                <button class="btn btn-ghost" style="padding: 0.5rem; gap: 0.5rem;">
+                    <div style="width: 32px; height: 32px; background: var(--primary); border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                        ${currentUser.name.charAt(0)}
+                    </div>
+                </button>
+                <div class="dropdown-content" style="right: 0; left: auto; width: 200px;">
+                    <div style="padding: 0.75rem 1rem; border-bottom: 1px solid var(--gray-200);">
+                        <p style="font-weight: 600; color: var(--gray-900);">${currentUser.name}</p>
+                        <p style="font-size: 0.8rem; color: var(--gray-500);">${currentUser.email}</p>
+                    </div>
+                    <a href="#" onclick="showNotification('Profile coming soon', 'info')">My Profile</a>
+                    <a href="#" onclick="showNotification('Orders coming soon', 'info')">Orders</a>
+                    <div style="height: 1px; background: var(--gray-200); margin: 0.5rem 0;"></div>
+                    <a href="#" onclick="logout()" style="color: var(--danger);">Logout</a>
+                </div>
+            </div>
+        `;
+        navActions.insertAdjacentHTML('beforeend', profileHTML);
+    } else {
+        // Show default login/signup buttons
+        authButtons.forEach(btn => btn.style.display = '');
+    }
+}
 
 // ============================================
 // CART MODAL FUNCTIONS
@@ -291,7 +351,7 @@ function updateQuantity(productId, change) {
             return;
         }
         
-        localStorage.setItem('detrendCart', JSON.stringify(cart));
+        localStorage.setItem('marvillyonCart', JSON.stringify(cart));
         updateCartBadge();
         renderCartItems();
     }
@@ -299,7 +359,7 @@ function updateQuantity(productId, change) {
 
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
-    localStorage.setItem('detrendCart', JSON.stringify(cart));
+    localStorage.setItem('marvillyonCart', JSON.stringify(cart));
     updateCartBadge();
     renderCartItems();
     showNotification('Removed from cart', 'info');
@@ -311,9 +371,70 @@ function checkout() {
         return;
     }
     
-    showNotification('Checkout feature coming soon! 🚀', 'success');
-    // In a real app, this would redirect to checkout page
+    // Calculate total for checkout modal
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    document.getElementById('checkoutTotal').textContent = `$${total.toFixed(2)}`;
+    
+    // Close cart and open checkout
+    closeCartModal();
+    const checkoutModal = document.getElementById('checkoutModal');
+    checkoutModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
+
+function closeCheckoutModal() {
+    document.getElementById('checkoutModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+function processCheckout() {
+    const name = document.getElementById('checkoutName').value;
+    const address = document.getElementById('checkoutAddress').value;
+    const phone = document.getElementById('checkoutPhone').value;
+    
+    if (!name || !address || !phone) {
+        showNotification('Please fill in all shipping details', 'info');
+        return;
+    }
+    
+    // Show Loading
+    const btn = document.querySelector('#checkoutModal .btn-primary');
+    const originalText = btn.textContent;
+    btn.textContent = 'Processing...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        // Success
+        cart = [];
+        localStorage.setItem('marvillyonCart', JSON.stringify(cart));
+        updateCartBadge();
+        
+        closeCheckoutModal();
+        
+        // Reset button
+        btn.textContent = originalText;
+        btn.disabled = false;
+        
+        showNotification('Order placed successfully! 🚀', 'success');
+    }, 2000);
+}
+
+// Update cart button click
+document.getElementById('cartBtn')?.addEventListener('click', openCartModal);
+
+// Close cart modal when clicking outside
+document.getElementById('cartModal')?.addEventListener('click', (e) => {
+    if (e.target.id === 'cartModal') {
+        closeCartModal();
+    }
+});
+
+// Close checkout modal when clicking outside
+document.getElementById('checkoutModal')?.addEventListener('click', (e) => {
+    if (e.target.id === 'checkoutModal') {
+        closeCheckoutModal();
+    }
+});
 
 // Update cart button click
 document.getElementById('cartBtn')?.addEventListener('click', openCartModal);
@@ -392,8 +513,9 @@ function displayProducts(productsToDisplay) {
                 alt="${product.title}" 
                 class="product-image" 
                 loading="lazy"
-                onerror="this.src='https://via.placeholder.com/280x280?text=No+Image'">                <button class="wishlist-btn" onclick="addToWishlist(${product.id})">
-                    <i data-lucide="heart"></i>
+                onerror="this.src='https://via.placeholder.com/280x280?text=No+Image'">
+                <button class="wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}" onclick="toggleWishlist(${product.id}, this)">
+                    <i data-lucide="heart" class="${isInWishlist(product.id) ? 'fill-current' : ''}"></i>
                 </button>
                 ${product.price < 50 ? '<div class="product-badge">Sale</div>' : ''}
             </div>
@@ -465,7 +587,8 @@ function addToCart(productId) {
         }
         
         // Save to localStorage
-        localStorage.setItem('detrendCart', JSON.stringify(cart));
+        // Save to localStorage
+        localStorage.setItem('marvillyonCart', JSON.stringify(cart));
         
         updateCartBadge();
         showNotification('Added to cart!', 'success');
@@ -488,10 +611,62 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchProducts();
     animateStats();
     updateCartBadge(); // Add this line
+    updateWishlistBadge(); // Add this line
+    
+    // Add active class style for wishlist button if not present
+    if (!document.getElementById('wishlistStyle')) {
+        const style = document.createElement('style');
+        style.id = 'wishlistStyle';
+        style.textContent = `
+            .wishlist-btn.active { background: var(--danger); color: white; border-color: var(--danger); }
+            .wishlist-btn.active svg { fill: white; color: white; }
+            .fill-current { fill: currentColor; }
+        `;
+        document.head.appendChild(style);
+    }
 });
 
-function addToWishlist(productId) {
-    showNotification('Added to wishlist! ❤️', 'success');
+function isInWishlist(productId) {
+    return wishlist.some(item => item.id === productId);
+}
+
+function toggleWishlist(productId, btnElement) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+    
+    const index = wishlist.findIndex(item => item.id === productId);
+    
+    if (index === -1) {
+        // Add to wishlist
+        wishlist.push(product);
+        showNotification('Added to wishlist! ❤️', 'success');
+        if (btnElement) btnElement.classList.add('active');
+        if (btnElement) {
+            const icon = btnElement.querySelector('svg');
+            if(icon) icon.classList.add('fill-current');
+        }
+    } else {
+        // Remove from wishlist
+        wishlist.splice(index, 1);
+        showNotification('Removed from wishlist', 'info');
+        if (btnElement) btnElement.classList.remove('active');
+         if (btnElement) {
+            const icon = btnElement.querySelector('svg');
+            if(icon) icon.classList.remove('fill-current');
+        }
+    }
+    
+    localStorage.setItem('marvillyonWishlist', JSON.stringify(wishlist));
+    updateWishlistBadge();
+}
+
+function updateWishlistBadge() {
+    // Assuming the wishlist button is the first one in nav-actions
+    // Or we can add an ID to the wishlist button in index.html
+    const badge = document.querySelector('.nav-actions .nav-icon-btn[title="Wishlist"] .badge');
+    if (badge) {
+        badge.textContent = wishlist.length;
+    }
 }
 
 // ============================================
@@ -712,8 +887,8 @@ backToTopBtn?.addEventListener('click', () => {
 // ============================================
 // CONSOLE EASTER EGG
 // ============================================
-console.log('%cMarketHub 🛍️', 'color: #6366f1; font-size: 24px; font-weight: bold;');
-console.log('%cWelcome to MarketHub! Looking to build something amazing? Join our vendor program!', 'color: #8b5cf6; font-size: 14px;');
+console.log('%cMarvillyon 🛍️', 'color: #6366f1; font-size: 24px; font-weight: bold;');
+console.log('%cWelcome to Marvillyon! Looking to build something amazing? Join our vendor program!', 'color: #8b5cf6; font-size: 14px;');
 
 // Make functions available globally
 window.openAuthModal = openAuthModal;
@@ -726,3 +901,5 @@ window.closeCartModal = closeCartModal;
 window.updateQuantity = updateQuantity;
 window.removeFromCart = removeFromCart;
 window.checkout = checkout;
+window.closeCheckoutModal = closeCheckoutModal;
+window.processCheckout = processCheckout;
