@@ -237,15 +237,15 @@ Contributions, issues, and feature requests are welcome!
 **Mustapha Marvelous Oluwaferanmi**
 
 <!-- - Portfolio: [yourportfolio.com](https://yourportfolio.com)
-- LinkedIn: [@yourlinkedin](https://linkedin.com/in/yourprofile)
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com -->
+- LinkedIn: [@yourlinkedin](https://linkedin.com/in/yourprofile) -->
+- GitHub: [@mustaphamarvelous3-del] (https://github.com/mustaphamarvelous3-del)
+- Email: mustaphamarvelous3@gmail.com
 
 ---
 
-<!-- ## 📄 **License**
+## 📄 **License**
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. -->
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
