@@ -209,6 +209,8 @@ body {
     cursor: pointer;
     font-family: inherit;
     text-align: left;
+    font-size: 1rem; 
+    font-weight: 500; 
 }
 
 .mobile-nav-dropdown-btn .dropdown-icon {

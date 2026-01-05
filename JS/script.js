@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     animateStats();
     updateAuthUI();
     updateWishlistBadge();
+    updateCartBadge();
+    
+    // Reinitialize icons after a short delay to ensure mobile menu icons load
+    setTimeout(() => {
+        initializeLucideIcons();
+    }, 100);
 });
 
 // Initialize Lucide Icons
@@ -38,6 +44,8 @@ function setupEventListeners() {
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenuOverlay.classList.add('active');
+            // Reinitialize icons when menu opens
+            setTimeout(() => initializeLucideIcons(), 50);
         });
     }
     
@@ -65,11 +73,8 @@ function setupEventListeners() {
     // Filter Tabs
     document.querySelectorAll('.filter-tab').forEach(tab => {
         tab.addEventListener('click', () => {
-            // Remove active class from all tabs
             document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-            // Add active class to clicked tab
             tab.classList.add('active');
-            // Filter products
             currentCategory = tab.dataset.category;
             filterProducts(currentCategory);
         });
@@ -90,7 +95,7 @@ function setupEventListeners() {
             e.preventDefault();
             const email = e.target.querySelector('.newsletter-input').value;
             if (email) {
-                alert('Thank you for subscribing! 🎉');
+                showNotification('Thank you for subscribing! 🎉', 'success');
                 e.target.reset();
             }
         });
@@ -104,14 +109,17 @@ function setupEventListeners() {
         }, 300));
     }
 
-    // Mobile Categories Dropdown
+    // Mobile Categories Dropdown - THIS IS THE KEY FIX
     const mobileDropdownBtn = document.querySelector('.mobile-nav-dropdown-btn');
     const mobileDropdown = document.querySelector('.mobile-nav-dropdown');
 
     if (mobileDropdownBtn && mobileDropdown) {
         mobileDropdownBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation(); // ADD THIS LINE
             mobileDropdown.classList.toggle('active');
+            // Reinitialize icons to show rotated chevron
+            initializeLucideIcons();
         });
     }
 
@@ -433,16 +441,6 @@ document.getElementById('cartModal')?.addEventListener('click', (e) => {
 document.getElementById('checkoutModal')?.addEventListener('click', (e) => {
     if (e.target.id === 'checkoutModal') {
         closeCheckoutModal();
-    }
-});
-
-// Update cart button click
-document.getElementById('cartBtn')?.addEventListener('click', openCartModal);
-
-// Close cart modal when clicking outside
-document.getElementById('cartModal')?.addEventListener('click', (e) => {
-    if (e.target.id === 'cartModal') {
-        closeCartModal();
     }
 });
 
