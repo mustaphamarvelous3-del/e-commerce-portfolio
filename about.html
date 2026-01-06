@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Marvillyon - Innovation scaled to billions. Learn about our journey from fashion to tech powerhouse.">
+    <meta name="keywords" content="Marvillyon, tech company, fashion mall, African excellence, Mustapha Marvelous">
+    <meta name="author" content="Mustapha Marvelous Oluwaferanmi">
+    
+    <title>About Us - Marvillyon</title>
+    <link rel="stylesheet" href="./CSS/styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+</head>
+
+<body>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="shopping-bag"></i>
+                    </div>
+                    <span class="logo-text">Marvillyon</span>
+                </div>
+                <button id="closeMobileMenu" class="close-menu-btn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <nav class="mobile-nav">
+                <a href="index.html#home" class="mobile-nav-item">Home</a>
+                <a href="index.html#categories" class="mobile-nav-item">Categories</a>
+                <a href="index.html#vendors" class="mobile-nav-item">Become a Vendor</a>
+                <a href="about.html" class="mobile-nav-item">About Us</a>
+                <a href="index.html#testimonials" class="mobile-nav-item">Testimonials</a>
+                <a href="index.html#contact" class="mobile-nav-item">Contact</a>
+                <div class="mobile-menu-divider"></div>
+                <button class="btn btn-primary w-full" onclick="openAuthModal('login')">Sign In</button>
+                <button class="btn btn-secondary w-full" onclick="openAuthModal('signup')">Create Account</button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Welcome Back</h2>
+                <button onclick="closeAuthModal()" class="close-modal-btn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="Enter your email" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter your password" class="form-input">
+                </div>
+                <div class="form-footer">
+                    <label class="checkbox-label">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="link-text">Forgot password?</a>
+                </div>
+                <button class="btn btn-primary w-full btn-lg">Sign In</button>
+                <p class="form-switch">Don't have an account? <a href="#" onclick="switchAuthMode('signup')">Sign up</a></p>
+            </div>
+            <div id="signupForm" class="auth-form" style="display: none;">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="John Doe" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="john@example.com" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Create a strong password" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Account Type</label>
+                    <select class="form-input">
+                        <option>Customer</option>
+                        <option>Vendor</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary w-full btn-lg">Create Account</button>
+                <p class="form-switch">Already have an account? <a href="#" onclick="switchAuthMode('login')">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open menu">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                    <div class="logo-icon">
+                        <i data-lucide="shopping-bag"></i>
+                    </div>
+                    <span class="logo-text">Marvillyon</span>
+                </div>
+
+                <div class="desktop-nav">
+                    <a href="index.html#home" class="nav-link">Home</a>
+                    <a href="index.html#categories" class="nav-link">Categories</a>
+                    <a href="index.html#vendors" class="nav-link">Become a Vendor</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </div>
+
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search products...">
+                    <button class="search-btn">
+                        <i data-lucide="search"></i>
+                    </button>
+                </div>
+
+                <div class="nav-actions">
+                    <button class="nav-icon-btn" title="Wishlist" aria-label="View wishlist">
+                        <i data-lucide="heart"></i>
+                        <span class="badge">0</span>
+                    </button>
+                    <button class="nav-icon-btn" id="cartBtn" title="Cart" aria-label="View shopping cart">
+                        <i data-lucide="shopping-cart"></i>
+                        <span class="badge" id="cartBadge">0</span>
+                    </button>
+                    <button class="btn btn-ghost" onclick="openAuthModal('login')">Sign In</button>
+                    <button class="btn btn-primary" onclick="openAuthModal('signup')">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="hero" style="min-height: 400px;">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <span class="hero-badge">🦁 The Giant is Awake</span>
+                    <h1 class="hero-title">About Marvillyon</h1>
+                    <p class="hero-subtitle">Innovation, scaled to billions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section style="padding: 5rem 0; background: white;">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto;">
+                
+                <!-- Company Overview -->
+                <div style="margin-bottom: 4rem;">
+                    <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1.5rem; text-align: center;">
+                        🦁 Who We Are
+                    </h2>
+                    <p style="font-size: 1.125rem; line-height: 1.8; color: var(--gray-700); text-align: center; margin-bottom: 2rem;">
+                        Marvillyon is a forward-thinking parent company positioned at the intersection of high-level technology and global lifestyle. Founded by <strong>Mustapha Marvelous Oluwaferanmi</strong> in Lagos, Nigeria, the company evolved from its roots in fashion (formerly DeTrend) to become a dual-force powerhouse.
+                    </p>
+                    <p style="font-size: 1.25rem; font-weight: 600; color: var(--primary); text-align: center; font-style: italic;">
+                        We operate on a simple philosophy: <strong>Innovation, scaled to billions.</strong>
+                    </p>
+                </div>
+
+                <!-- Our Story -->
+                <div style="background: var(--gray-50); padding: 3rem; border-radius: 20px; margin-bottom: 4rem; border: 2px solid var(--gray-200);">
+                    <h3 style="font-size: 2rem; font-weight: 700; color: var(--gray-900); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                        <i data-lucide="book-open" style="color: var(--primary);"></i> Our Story
+                    </h3>
+                    <p style="font-size: 1.0625rem; line-height: 1.8; color: var(--gray-700); margin-bottom: 1rem;">
+                        The organization was discovered <strong>3 years ago in October 2022</strong> as <strong>DeTrend</strong>, a fashion brand dedicated to transforming men's style. But as the world evolved, so did we.
+                    </p>
+                    <p style="font-size: 1.0625rem; line-height: 1.8; color: var(--gray-700);">
+                        In early <strong>2025</strong>, we evolved into tech, combining the power of engineering with the elegance of fashion. The name <strong>Marvillyon</strong> was born—inspired by my name, Mustapha <strong>Marvel</strong>ous, and the ambition to think like a <strong>billion</strong>aire. It represents our dual mission: to build world-class technology and redefine premium fashion.
+                    </p>
+                </div>
+
+                <!-- Two Pillars -->
+                <div style="margin-bottom: 4rem;">
+                    <h3 style="font-size: 2rem; font-weight: 700; color: var(--gray-900); margin-bottom: 2rem; text-align: center;">
+                        Our Two Pillars
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                        <!-- Tech Labs -->
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2.5rem; border-radius: 16px; color: white;">
+                            <i data-lucide="code-2" style="width: 48px; height: 48px; margin-bottom: 1rem;"></i>
+                            <h4 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Marvillyon Tech Labs</h4>
+                            <p style="font-size: 1rem; line-height: 1.7; opacity: 0.95;">
+                                A full-stack engineering hub dedicated to building robust digital platforms, modernizing legacy systems, and architecting the future of the web.
+                            </p>
+                        </div>
+                        
+                        <!-- Fashion Mall -->
+                        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 2.5rem; border-radius: 16px; color: white;">
+                            <i data-lucide="store" style="width: 48px; height: 48px; margin-bottom: 1rem;"></i>
+                            <h4 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">The Marvillyon Fashion Mall</h4>
+                            <p style="font-size: 1rem; line-height: 1.7; opacity: 0.95;">
+                                Destined to become the world's largest hub for premium men's native wear and suits, eliminating "tailor disappointment" through instant, ready-to-wear excellence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission & Vision -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-bottom: 4rem;">
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                            <i data-lucide="target" style="width: 40px; height: 40px; color: white;"></i>
+                        </div>
+                        <h4 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--gray-900);">🚀 Our Mission</h4>
+                        <p style="font-size: 1rem; line-height: 1.7; color: var(--gray-700); font-style: italic; margin-bottom: 1rem;">
+                            "To illuminate the intersection of human potential and modern innovation."
+                        </p>
+                        <p style="font-size: 0.95rem; line-height: 1.6; color: var(--gray-600);">
+                            We provide the strength of world-class technology and the light of timeless style. We exist to eliminate mediocrity and deliver excellence in every line of code and every stitch of fabric.
+                        </p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                            <i data-lucide="eye" style="width: 40px; height: 40px; color: white;"></i>
+                        </div>
+                        <h4 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--gray-900);">👁 Our Vision</h4>
+                        <p style="font-size: 1rem; line-height: 1.7; color: var(--gray-700); font-style: italic; margin-bottom: 1rem;">
+                            "To be the global reference point for African excellence in Tech and Fashion."
+                        </p>
+                        <p style="font-size: 0.95rem; line-height: 1.6; color: var(--gray-600);">
+                            We envision a world where African-engineered software powers global industries, and where the Marvillyon Lion is recognized from Lagos to London as a symbol of quality, speed, and prestige.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Core Goals -->
+                <div style="background: var(--gray-900); padding: 3rem; border-radius: 20px; color: white; margin-bottom: 4rem;">
+                    <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem; text-align: center;">🎯 Our Core Goals</h3>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: #6366f1;">1. In Technology (The Present)</h4>
+                        <p style="font-size: 1rem; line-height: 1.7; opacity: 0.9;">
+                            To modernize the digital landscape of businesses. Our goal is to take static, outdated, or broken websites and transform them into dynamic, high-performance solutions. We aim to help <strong>1,000+ businesses</strong> upgrade their legacy systems to meet modern standards by 2030.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: #f5576c;">2. In Fashion (The Future)</h4>
+                        <p style="font-size: 1rem; line-height: 1.7; opacity: 0.9;">
+                            To end the era of "Tailor Disappointment." We are building the infrastructure for a massive Fashion Mall where men can access millions of styles, colors, and sizes instantly. Our goal is to make premium native wear as accessible as ordering a pizza—<strong>zero wait time, perfect fit, every time.</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Marvillyon Standard -->
+                <div style="text-align: center; padding: 3rem; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border-radius: 20px; color: white;">
+                    <i data-lucide="award" style="width: 64px; height: 64px; margin-bottom: 1.5rem;"></i>
+                    <h3 style="font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;">💎 The Marvillyon Standard</h3>
+                    <p style="font-size: 1.125rem; line-height: 1.7; margin-bottom: 1.5rem; opacity: 0.95;">
+                        At Marvillyon, we do not believe in shortcuts.
+                    </p>
+                    <div style="font-size: 1.0625rem; line-height: 2; font-weight: 600;">
+                        <p>If we build it: <strong>It scales.</strong></p>
+                        <p>If we design it: <strong>It stands out.</strong></p>
+                        <p>If we deliver it: <strong>It works.</strong></p>
+                    </div>
+                    <p style="font-size: 1.5rem; font-weight: 800; margin-top: 2rem; text-transform: uppercase; letter-spacing: 2px;">
+                        The Giant is Awake. 🦁
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Join the Marvillyon Movement</h2>
+                    <p>Be the first to know about our tech solutions and fashion launches.</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" class="newsletter-input">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo mb-3">
+                        <div class="logo-icon">
+                            <i data-lucide="shopping-bag"></i>
+                        </div>
+                        <span class="logo-text">Marvillyon</span>
+                    </div>
+                    <p class="footer-desc">Innovation, scaled to billions. Building world-class tech and premium fashion.</p>
+                    <div class="social-links">
+                        <a href="#"><i data-lucide="facebook"></i></a>
+                        <a href="#"><i data-lucide="twitter"></i></a>
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#categories">Categories</a></li>
+                        <li><a href="index.html#vendors">Become a Vendor</a></li>
+                        <li><a href="index.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li><i data-lucide="mail"></i> marvillyon@gmail.com</li>
+                        <li><i data-lucide="phone"></i> +234 913 143 2343</li>
+                        <li><i data-lucide="map-pin"></i> 3 Matti St, Ikorodu, 104101, Lagos, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Marvillyon. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script src="./JS/script.js"></script>
+</body>
+</html>
